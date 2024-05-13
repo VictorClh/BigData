@@ -9,7 +9,7 @@ media_compra_por_cliente = data.groupby('ClientID')['Prod_Price'].mean().reset_i
 # Ordenar os clientes pelo valor médio de compra
 media_compra_por_cliente = media_compra_por_cliente.sort_values(by='Prod_Price', ascending=False)
 
-# Criar um gráfico 
+# gráfico 
 fig = px.bar(media_compra_por_cliente.head(20), 
              x='ClientID', 
              y='Prod_Price', 
@@ -17,16 +17,16 @@ fig = px.bar(media_compra_por_cliente.head(20),
              labels={'ClientID': 'Cliente ID', 'Prod_Price': 'Valor Médio de Compra'},
              text='Prod_Price')
 
-#  hover para mostrar o valor exato
+# Hover
 fig.update_traces(marker_color='skyblue', texttemplate='%{text:.2f}', textposition='outside')
 
-# Personalizar o layout do gráfico
+
 fig.update_layout(xaxis_title='', yaxis_title='', xaxis=dict(type='category'))
 
 # plotar o gráfico
 fig.show()
 
-#produto mais vendido 
+
 produto_mais_vendido = data['ProductID'].value_counts().idxmax()
 
 print('O produto mais vendido na loja é:', produto_mais_vendido)
